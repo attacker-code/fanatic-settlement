@@ -1,0 +1,27 @@
+[package]
+name = "fanatic-settlement"
+version = "0.1.0"
+description = "FANatic Settlement — Trustless World Cup Prediction Markets on Solana with TxLINE CPI"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "fanatic_settlement"
+
+[features]
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+default = []
+
+[dependencies]
+anchor-lang = { version = "0.31.1", features = ["init-if-needed"] }
+anchor-spl = "0.31.1"
+solana-program = "2.1.0"
+hex = "0.4"
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
